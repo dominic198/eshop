@@ -16,14 +16,21 @@ import { GlobalErrorHandler } from './shared/error/global-error-handler';
   ],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule,
     AppRoutingModule,
-    ToastrModule,
-    NgbModule,
+    HttpClientModule,
     SharedModule,
-    HttpClientModule
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      timeOut: 3000,
+      positionClass: 'toast-top-center',
+      preventDuplicates: true,
+    }),
+    NgbModule,
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
+    {provide: ErrorHandler, useClass: GlobalErrorHandler},
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
