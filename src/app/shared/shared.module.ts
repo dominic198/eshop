@@ -14,6 +14,16 @@ import { environment } from 'src/environments/environment';
   declarations: [ErrorMessageComponent, LoadingSpinnerComponent],
   imports: [
     CommonModule
-  ]
+  ],
+  exports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,  
+    LoadingSpinnerComponent,
+    NgbDropdownModule,
+    NgbModalModule,
+    NgbNavModule,
+    NgbModule
+  ] 
 })
 export class SharedModule { }
