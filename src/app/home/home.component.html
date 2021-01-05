@@ -1,3 +1,28 @@
 <app-navbar></app-navbar>
-<router-outlet></router-outlet>
-<app-footer></app-footer>
+<!-- <router-outlet></router-outlet> -->
+<div style="height: 100%; width: 100%;margin-top: 100px;">
+   <form [formGroup]="myForm" (ngSubmit)="submitForm()">
+        <div class="form-group">
+            <label for="input">Enter Url</label>
+            <input class="form-control" type="text" id="input" name="inputName" placeholder="amazon url" value="" autocomplete="off" formControlName="url"/>
+        </div>
+        <div class="btn-container">
+            <button type="submit" class="primary-btn btn-grey" [disabled]="myForm.invalid">Submit</button>
+        </div>
+   </form>
+   <div style="margin-top: 20px;" *ngIf="showResults">
+      <h2>Product: {{ results?.title}}</h2>
+      <h4>Strike Price: {{results?.strikeprice}}</h4>
+      <h4>Our Price: {{results?.ourPrice}}</h4>
+      <h4>{{results?.savingPrice}}</h4>     
+      <br> 
+      <div *ngIf="results.description">
+        <h4>Description</h4>
+        <ul>
+            <li *ngFor="let des of results.description">{{des}}</li>
+        </ul>
+      </div>
+   </div>
+</div>
+
+<!-- <app-footer></app-footer> -->

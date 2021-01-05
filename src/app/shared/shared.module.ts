@@ -13,17 +13,23 @@ import { environment } from 'src/environments/environment';
 @NgModule({
   declarations: [ErrorMessageComponent, LoadingSpinnerComponent],
   imports: [
-    CommonModule
-  ],
-  exports: [
-    CommonModule,
+    CommonModule,  
     FormsModule,
-    ReactiveFormsModule,  
-    LoadingSpinnerComponent,
+    ReactiveFormsModule, 
     NgbDropdownModule,
     NgbModalModule,
     NgbNavModule,
     NgbModule
+  ],
+  exports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule, 
+    NgbDropdownModule,
+    NgbModalModule,
+    NgbNavModule,
+    NgbModule,
+    LoadingSpinnerComponent
   ] 
 })
 export class SharedModule { }
