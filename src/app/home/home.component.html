@@ -3,18 +3,18 @@
 <div style="height: 100%; width: 100%;margin-top: 100px;">
    <form [formGroup]="myForm" (ngSubmit)="submitForm()">
         <div class="form-group">
-            <label for="input">Enter Url</label>
-            <input class="form-control" type="text" id="input" name="inputName" placeholder="amazon url" value="" autocomplete="off" formControlName="url"/>
+            <!-- <label for="input">Url</label> -->
+            <input class="form-control" type="text" id="input" name="inputName" placeholder="Enter url here" value="" autocomplete="off" formControlName="url"/>
         </div>
         <div class="btn-container">
             <button type="submit" class="primary-btn btn-grey" [disabled]="myForm.invalid">Submit</button>
         </div>
    </form>
    <div style="margin-top: 20px;" *ngIf="showResults">
-      <h2>Product: {{ results?.title}}</h2>
-      <h4>Strike Price: {{results?.strikeprice}}</h4>
-      <h4>Our Price: {{results?.ourPrice}}</h4>
-      <h4>{{results?.savingPrice}}</h4>     
+      <h3>Product: {{ results?.title}}</h3>
+      <h4 *ngIf="results.strikeprice">Strike Price: {{results?.strikeprice}}</h4>
+      <h4 *ngIf="results.ourPrice">Our Price: {{results?.ourPrice}}</h4>
+      <h4 *ngIf="results.savingPrice">{{results?.savingPrice}}</h4>     
       <br> 
       <div *ngIf="results.description">
         <h4>Description</h4>

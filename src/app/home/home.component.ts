@@ -28,23 +28,38 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  submitForm(){   
-    console.log(this.myForm.value.url)
-    this.getScrapedData(this.myForm.value.url).subscribe((data:any) =>{
-      console.log(data)
-      this.results = data.result;  
-      this.showResults = true;
-    });
+  submitForm(){      
+    let validurl = this.isUrlValid(this.myForm.value.url);
+    if(!validurl){
+      alert('Enter Valid Url');    
+      this.myForm.reset();
+      return;  
+    }else{
+      this.getScrapedData(this.myForm.value.url).subscribe((data:any) =>{    
+        this.results = data.result;  
+        this.showResults = true;
+        this.myForm.reset();
+      });
+    }
   }
 
-  getScrapedData(siteUrl:any){
-    let url = `http://localhost:4000/webscrap/getWebScrapusingcheerio`;
-    return this.http.post(url,{"url":siteUrl}).pipe(
-      map(data => {      
-        this.commonService.loadingSpinnerCall(false);
-        return data;
-      })
-    )
+  getScrapedData(siteUrl:any){ 
+      let url = `http://localhost:4000/webscrap/getWebScrapusingcheerio`;
+      return this.http.post(url,{"url":siteUrl}).pipe(
+        map(data => {      
+          this.commonService.loadingSpinnerCall(false);
+          return data;
+        })
+      )
+   
   }
+
+  isUrlValid(userInput:string) {
+    var res = userInput.match(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g);
+    if(res == null)
+        return false;
+    else
+        return true;
+}
 
 }
